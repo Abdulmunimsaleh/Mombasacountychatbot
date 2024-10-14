@@ -1,0 +1,102 @@
+Hello
+How can I help you?.
+
+hey
+How can I help you?.
+
+hy
+How can I help you?.
+
+Good Morning
+How can I help you?.
+
+Good Afternoon
+How can I help you?.
+
+Good Evening
+How can I help you?.
+
+
+Sign up
+
+Please follow the following instruction for a successful sign up:
+
+Step 1: Click the "Sign Up" button (top right) and enter your details
+
+Step 2: Enter your email, click "Send OTP," check your email for the code, and click "Verify"
+
+Step 3: Enter your phone number, click "Send OTP," check your SMS for the code, and click "Verify".
+
+Enter your new password
+Step 1: Click on Finish button to submit your registration
+
+Step 2: Wait for 24hours for your approval.
+
+Log in login
+
+Step 1: Click on the log in button on top
+
+Step 2: Fill in your email address and your password and click log in. 
+
+Forgot password
+
+Click on forgot password as displayed as "Forget password?" 
+ .
+
+Acces Parking System:
+
+Press 1 For App users
+
+Press 2 For USSD users .
+
+
+For App users
+
+Step 1: Log in 
+
+Step 2: Select Access Parking Module
+
+Step 3: Click Add Vehicle
+
+Step 4: Enter your plate number (no spaces) and vehicle category, then click Add
+
+Step 5: Click Submit
+
+Step 6: Select the added vehicle, choose your payment period (daily, monthly, etc)
+
+Step 7: Choose a parking zone and Lipa via Mpesa Express or Mpesa
+
+Access parking system For non-app users (USSD users):
+
+Step 1: Dial *282#
+
+Step 2: Select 1: My Services
+
+Step 3: Select 1: Parking
+
+Step 4: Select 2: Pay for Existing (or 1 for New)
+
+Step 5: Choose vehicle, period, and zone
+
+Step 6: Confirm and enter Mpesa PIN .
+
+
+Acces Water System:
+
+Press 1 For App users
+
+Press 2 For USSD users 
+
+For App users
+
+Step 1: Log in 
+
+Step 2: Select Access water Module
+
+Step 3: Click Add Vehicle
+
+For USSD users:
+
+Step 1: Dial *282#
+
+Step 2: Select 1: My Services .

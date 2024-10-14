@@ -1,0 +1,18 @@
+nltk
+scikit-learn
+flask
+flask-cors
+
+
+
+# import nltk
+# from nltk.stem import WordNetLemmatizer
+
+
+# ---------------------------
+# Download NLTK Data
+# ---------------------------
+# nltk.download('punkt_tab')
+# nltk.download('punkt')      # Sentence tokenizer
+# nltk.download('wordnet')    # Lemmatizer
+
