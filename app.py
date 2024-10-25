@@ -7,6 +7,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from datetime import datetime  # Import datetime module
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
@@ -27,13 +28,29 @@ def LemNormalize(text):
     return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
 
 # Greeting inputs and responses
-GREETING_INPUTS = ["hi"]
-GREETING_RESPONSES = ["Hi!"]
+GREETING_INPUTS = ["hi", "hy", "hello", "hey", "good morning", "good afternoon", "good evening"]
+
+# Time-based greeting function
+def get_time_based_greeting():
+    current_hour = datetime.now().hour
+    if current_hour < 12:
+        return "Good morning"
+    elif 12 <= current_hour < 18:
+        return "Good afternoon"
+    else:
+        return "Good evening"
 
 def greeting(sentence):
-    for word in sentence.split():
-        if word.lower() in GREETING_INPUTS:
-            return random.choice(GREETING_RESPONSES)
+    # Check if the whole sentence is in GREETING_INPUTS
+    if sentence.lower() in GREETING_INPUTS:
+        time_based_greeting = get_time_based_greeting()
+        options = ("How may I help you? type one of the following options:<br>"
+                   "Sign up support<br>"
+                   "Log in support<br>"
+                   "Forgot password<br>"
+                   "Payment for parking<br>"
+                   "Payment for water")
+        return f"{time_based_greeting}! {options}"
     return None
 
 # Initialize session variable to store context
@@ -52,7 +69,7 @@ def response(user_response, sent_tokens, TfidfVec, threshold=0.2):
     if 'parking' in user_response:
         session_context['last_topic'] = 'parking'  # Store context
         robo_response = ("Please select an option:<br>"
-                          "For App users press 1 and press enter<br>"
+                         "For App users press 1 and press enter<br>"
                          "For USSD users press 2 and press enter")
         return robo_response
     elif 'water' in user_response:
@@ -99,7 +116,13 @@ def response(user_response, sent_tokens, TfidfVec, threshold=0.2):
         req_tfidf = flat[-2]
 
         if req_tfidf < threshold:
-            robo_response = "I am sorry! I don't understand you. Is there something else I can assist you with?"
+                            
+            robo_response = ("I'm sorry, I don't understand your request. How may I help you? Please type one of the following options:<br>"
+                            "Sign up support<br>"
+                            "Log in support<br>"
+                            "Forgot password<br>"
+                            "Pay for parking"
+                            "Pay for water")
         else:
             robo_response = sent_tokens[idx]
         sent_tokens.pop()
@@ -114,7 +137,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load corpus
-with open('sign_up_msa_county_data.txt', 'r', errors='ignore') as f:
+with open('data.txt', 'r', errors='ignore') as f:
     raw = f.read().lower()
     sent_tokens = nltk.sent_tokenize(raw)
 
@@ -151,7 +174,12 @@ def chat():
             # Detect if the response contains steps (numbers or bullet points)
             step_pattern = re.compile(r'(\d+\.\s|\•|\-|\*|step\s\d+)', re.IGNORECASE)
             if step_pattern.search(bot_response):
-                further_help_message = "How much further may I help you?"
+                further_help_message = ("How much further may I help you? type any option so i can sort you out quickly:<br>"
+                                        "Sign up support<br>"
+                                        "Log in support<br>"
+                                        "Forgot password<br>"
+                                        "Payment for parking<br>"
+                                        "Payment for water")
             else:
                 further_help_message = ""
 
