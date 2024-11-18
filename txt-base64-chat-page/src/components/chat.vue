@@ -30,7 +30,7 @@
                   <!-- Modals -->
                   <div v-if="showStartModal" class="modal-overlay">
                     <div class="modal-container">
-                      <div class="modal-content" style="width: 20vw">
+                      <div class="modal-content">
                         <button @click="startConversation" class="start-btn">
                           Start Conversation
                         </button>
@@ -39,45 +39,28 @@
                   </div>
 
                   <div v-if="showUserFormModal" class="modal-overlay">
-                    <div class="modal-container">
-                      <div class="modal-content" style="width: 20vw">
+                    <div class="modal-container2">
+                      <div class="modal-content2">
                         <form @submit.prevent="submitUserInfo">
+                          <p>Provide us with below information</p>
                           <input
+                            class="fill"
                             v-model="userInfo.name"
-                            placeholder="Enter your name"
+                            placeholder="Full Name"
                             required
-                            style="
-                              width: 15vw;
-                              margin-bottom: 30px;
-                              outline: none;
-                              color: black;
-                              border-bottom: 1px solid #fff;
-                            "
                           />
                           <input
+                            class="fill"
                             v-model="userInfo.phone"
-                            placeholder="Enter your phone"
+                            placeholder="Phone Number"
                             required
-                            style="
-                              width: 15vw;
-                              color: black;
-                              border-bottom: 1px solid #fff;
-                              margin-bottom: 30px;
-                              outline: none;
-                            "
                           />
                           <input
+                            class="fill"
                             v-model="userInfo.email"
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="Email Address"
                             required
-                            style="
-                              width: 15vw;
-                              color: black;
-                              border-bottom: 1px solid #fff;
-                              margin-bottom: 30px;
-                              outline: none;
-                            "
                           />
                           <button
                             type="submit"
@@ -162,16 +145,12 @@
                     </div>
                   </div>
 
-                  <!-- Drop-up for Buttons -->
+                  <!-- Carousel Buttons 
                   <div
                     v-if="!showStartModal && !showUserFormModal"
-                    class="dropup-container"
+                    class="carousel-buttons-container"
                   >
-                    <button class="dropup-button">
-                      Options
-                      <i class="fas fa-chevron-up"></i>
-                    </button>
-                    <div class="dropup-content">
+                    <div class="carousel-buttons">
                       <button @click="fetchData('sign up')">Sign Up</button>
                       <button @click="fetchData('log in')">Log In</button>
                       <button @click="fetchData('forgot password')">
@@ -186,7 +165,7 @@
                       <button
                         @click="fetchData('Payment for Business permits')"
                       >
-                        Pay Business permits
+                        Pay Business Permits
                       </button>
                       <button
                         @click="fetchData('Payment for Construction Permits')"
@@ -205,17 +184,12 @@
                       <button @click="fetchData('Payment for Markets')">
                         Pay Markets
                       </button>
-                      <button @click="fetchData('Payment for Hotel Levy')">
-                        Pay Hotel Levy
-                      </button>
-                      <button @click="fetchData('Payment for Court Fines')">
-                        Court Fines
-                      </button>
-                      <button @click="fetchData('Payment for Wayleaves')">
+                      <button @click="fetchData('Hawkers')">Hawkers</button>
+                      <button @click="fetchData('Wayleaves')">
                         Pay Wayleaves
                       </button>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div
                     v-if="!showStartModal && !showUserFormModal"
@@ -288,7 +262,18 @@ export default {
         });
 
       this.getBotResponse(
-        `Hello! ${this.userInfo.name}, how can I assist you today?`
+        `Hello! ${this.userInfo.name}, how can I assist you today?Select one of the following options:<br>
+            1) Sign up support<br>
+            2) Log in support<br>
+            3) Forgot password<br>
+            4) Payment for parking<br>
+            5) Payment for Landrates <br>
+            6) Payment for Cess <br>
+            7) Payment for PSV Levy <br>
+            8) Payment for House Rent <br>
+            9) Payment for Wayleaves <br>
+            10) Hawkers <br>
+            11) Markets`
       );
     },
     // Method to simulate bot responses for user inputs
@@ -299,6 +284,7 @@ export default {
         this.messages.push({ sender: "bot", text: `${userInput}` });
       }, 1000); // Simulate a typing delay
     },
+
     sendMessage() {
       const message = this.userMessage.trim(); // Trim whitespace
       if (message) {
@@ -369,154 +355,270 @@ export default {
         }, 1000); // Simulate the bot "typing" delay (1 second)
       }
     },
-    fetchData(action) {
-      let responseMessage = "";
 
-      // Construct the response message based on the action
-      if (action === "sign up") {
-        responseMessage = `
-          Sign Up<br />
-          Please follow the following instruction for a successful sign up:<br />
-          Step 1: Click the "Sign Up" button (top right) and enter your details.<br />
-          Step 2: Enter your email, click "Send OTP," check your email for the code, and click "Verify." <br />
-          Step 3: Enter your phone number, click "Send OTP," check your SMS for the code, and click "Verify."
-        `;
-      } else if (action === "log in") {
-        responseMessage = `
-          Log In<br />
-          Step 1: Click on the log in button on top.<br />
-          Step 2: Fill in your email address and your password and click log in.
-        `;
-      } else if (action === "forgot password") {
-        responseMessage = `
-          Forgot Password<br />
-          Step 1: Click on the forgot password button on top.<br />
-        `;
-      } else if (action === "Payment for parking") {
-        responseMessage = `
-          For App users <br>
-          Step 1: Log in <br>
-          Step 2: Select Access Parking Module<br>
-          Step 3: Click Add Vehicle <br>
-          Step 4: Enter your plate number (no spaces) and vehicle category, then click Add <br>
-          Step 5: Click Submit <br>
-          Step 6: Select the added vehicle, choose your payment period (daily, monthly, etc) <br>
-          Step 7: Choose a parking zone and Lipa via Mpesa Express or Mpesa <br>
-          Access parking system For non-app users (USSD users): <br>
-          Step 1: Dial *282#  <br>
-          Step 2: Select 1: My Services  <br>
-          Step 3: Select 1: Parking <br>
-          Step 4: Select 2: Pay for Existing (or 1 for New) <br>
-          Step 5: Choose vehicle, period, and zone <br>
-          Step 6: Confirm and enter Mpesa PIN <br>
-        `;
-      }
+    // Carousell fetch data buttons action
+    // fetchData(action) {
+    //   let responseMessage = "";
 
-      // Add the action message from the user to the messages array
-      this.messages.push({
-        sender: "user",
-        text: `${action.charAt(0).toUpperCase() + action.slice(1)}`,
-      });
+    //   // Construct the response message based on the action
+    //   if (action === "sign up") {
+    //     responseMessage = `
+    //       Sign Up<br />
+    //       Please follow the following instruction for a successful sign up:<br />
+    //       Step 1: Click the "Sign Up" button (top right) and enter your details.<br />
+    //       Step 2: Enter your email, click "Send OTP," check your email for the code, and click "Verify." <br />
+    //       Step 3: Enter your phone number, click "Send OTP," check your SMS for the code, and click "Verify."
+    //     `;
+    //   } else if (action === "log in") {
+    //     responseMessage = `
+    //       Log In<br />
+    //       Step 1: Click on the log in button on top.<br />
+    //       Step 2: Fill in your email address and your password and click log in.
+    //     `;
+    //   } else if (action === "forgot password") {
+    //     responseMessage = `
+    //       Forgot Password<br />
+    //       Step 1: Click on the forgot password button on top.<br />
+    //     `;
+    //   } else if (action === "Payment for parking") {
+    //     responseMessage = `
+    //       For App users <br>
+    //       Step 1: Log in <br>
+    //       Step 2: Select Access Parking Module<br>
+    //       Step 3: Click Add Vehicle <br>
+    //       Step 4: Enter your plate number (no spaces) and vehicle category, then click Add <br>
+    //       Step 5: Click Submit <br>
+    //       Step 6: Select the added vehicle, choose your payment period (daily, monthly, etc) <br>
+    //       Step 7: Choose a parking zone and Lipa via Mpesa Express or Mpesa <br>
+    //       Access parking system For non-app users (USSD users): <br>
+    //       Step 1: Dial *282#  <br>
+    //       Step 2: Select 1: My Services  <br>
+    //       Step 3: Select 1: Parking <br>
+    //       Step 4: Select 2: Pay for Existing (or 1 for New) <br>
+    //       Step 5: Choose vehicle, period, and zone <br>
+    //       Step 6: Confirm and enter Mpesa PIN <br>
+    //     `;
+    //   } else if (action === "Payment for Landrates") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select land rates module <br>
+    //     Step 2: Top right select "pay for land service" <br>
+    //     Step 3: Choose any service you want to pay for land <br>
+    //     Step 4: Fill in all the necessary information and click next <br>
+    //     Step 5: Upload all the necessary documnts and click finish <br>
+    //     Step 6: For Land transfer Please select Land Usage and proceed to payment <br>
+    //     Step 7: For Land clearance Please select clearance certificate fee and proceed to payment <br>
+    //     Step 8: For Land sub division fee Please select Sub-division fees and proceed to payment
+    //     `;
+    //   } else if (action === "Payment for Business permits") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Business permits module <br>
+    //     `;
+    //   } else if (action === "Payment for Construction Permits") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Construction permits module <br>
+    //     `;
+    //   } else if (action === "Payment for PSV Levy") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select PSV Levy module <br>
+    //     Step 2: Click add vehicle <br>
+    //     Step 3: Enter your number plate and click the blue box button to add your number plate <br>
+    //     Step 4: Insert another number plate and click the submit button <br>
+    //     Step 5: Click on the green button to make payment <br>
+    //     Step 6: After payment click on the blue button to dowload your sticker and click on the red button to delete your vehicle
+    //     `;
+    //   } else if (action === "Payment for House Rent") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select House Rent module <br>
+    //     Step 2: View a list of all registered houses under your details <br>
+    //     Step 3: Click the purple icon on the right to view your house rent statement <br>
+    //     Step 4: Click the green button writen pay to make online payment <br>
+    //     Step 5: Enter the phone number you wish to make payments from and click send payment request.You will receive an mpesa STK push to insert your pin number and complete the transaction <br>
+    //     Step 6: Upon successful payment, you will be redirected back to your registered houses <br>
+    //     Step 7: Click on my receipt to view a copy of your receipt or to download your receipt
+    //     `;
+    //   } else if (action === "Payment for Cess") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Cess module <br>
+    //     Step 2: Click on New Application <br>
+    //     Step 3: Fill in the details <br>
+    //     Step 4: Click on the check box <br>
+    //     Step 5: Click on the	submit button <br>
+    //     Step 6: Click on pay and proceed to payment
+    //     `;
+    //   } else if (action === "Payment for Markets") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Markets module <br>
+    //     Step 2: Click on the purple icon to view the statement <br>
+    //     Step 3: Click the green icon written pay to pay for your stall <br>
+    //     Step 4: Proceed to payment.
+    //     `;
+    //   } else if (action === "Hawkers") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Hawking module <br>
+    //     Step 2: Click the search button to filter hawkers report <br>
+    //     Step 3: Click the purple or green button to download hawkers collection report <br>
+    //     Step 4: Go through above process 2 and process 3 to access hawkers zonal report
+    //     `;
+    //   } else if (action === "Wayleaves") {
+    //     responseMessage = `
+    //     Step 1: After Logging in select Wayleaves module <br>
+    //     Step 2: Click the blue eye icon button to view the application details <br>
+    //     Step 3: Click the "Download structure file" to download the application <br>
+    //     Step 4: Click the button in red to "reject" or the button in blue to "approve" the application <br>
+    //     Step 5: In Receipt page you can click the filter button to use any preferences <br>
+    //     Step 6: Click the purple and green button to export as pdf or excel <br>
+    //     Step 8: Click on the blue eye icon to view or download the receipt <br>
+    //     Step 9: Follow the same from step 5 to step 8 for bills and licenses
+    //     `;
+    //   }
 
-      // Add the response message from the bot
-      this.messages.push({ sender: "bot", text: responseMessage });
+    //   // Add the action message from the user to the messages array
+    //   this.messages.push({
+    //     sender: "user",
+    //     text: `${action.charAt(0).toUpperCase() + action.slice(1)}`,
+    //   });
 
-      // Scroll down after adding the messages
-      this.$nextTick(() => {
-        const chatBody = this.$refs.chatBody;
-        chatBody.scrollTop = chatBody.scrollHeight;
-      });
-    },
+    //   // Add the response message from the bot
+    //   this.messages.push({ sender: "bot", text: responseMessage });
+
+    //   // Scroll down after adding the messages
+    //   this.$nextTick(() => {
+    //     const chatBody = this.$refs.chatBody;
+    //     chatBody.scrollTop = chatBody.scrollHeight;
+    //   });
+    // },
   },
 };
 </script>
 
 <style scoped>
 .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: #007bff;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  margin-top: 30px;
+  width: 100%; /* Adjust as needed to center the button in the modal */
+  margin-left: 85px;
+  outline: none;
+  border: none;
 }
 
 .modal-container {
   background-color: white;
   border-radius: 8px;
-  padding: 100px;
-  width: 90%; /* Adjust the width as needed */
-  max-width: 400px; /* Maximum width for larger screens */
-  height: 50vh;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  height: 60vh;
+  display: grid;
+  place-items: center;
+  border: none;
+  outline: none;
 }
 
-.start-btn,
+.start-btn {
+  background-color: #7cdf5b;
+  color: black;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  outline: none;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to right, #0a3aca, #6d91fb);
+}
+
+.modal-content2 {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  margin-left: 25px;
+  width: 25vw;
+}
+
+.modal-container2 {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  display: grid;
+  place-items: center;
+}
+
+form {
+  background-color: #7cdf5b;
+  display: grid;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.fill {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
 .start-chat-btn {
-  background-color: #007bff; /* Change this color as needed */
+  background-color: #022d68;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 30px;
   cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s;
+  margin-left: 35px;
 }
 
-.start-btn:hover,
-.start-chat-btn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+.main-chat-footer {
+  padding: 35px 20px;
 }
 
 .form-control {
   width: 100%;
+  margin-top: 10px;
   margin-bottom: 10px;
+  border: 3px solid #58595b;
+  border-radius: 20px;
+  padding: 1px 5px;
+  background: #cecfeb;
 }
 
-.dropup-container {
-  position: relative;
-  display: inline-block;
-}
-
-.dropup-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px;
-  font-size: 12px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropup-content {
-  display: none;
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  background-color: #f1f1f1;
-  /* min-width: 160px; */
-  width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropup-container:hover .dropup-content {
-  display: block;
-}
-
-.dropup-content button {
-  color: black;
-  padding: 12px;
-  font-size: 12px;
-  text-decoration: none;
-  display: block;
+.carousel-buttons-container {
   width: 100%;
+  margin-top: 10px;
+  padding-bottom: 15px;
+  overflow: hidden;
 }
 
-.dropup-content button:hover {
-  background-color: #ddd;
+.carousel-buttons {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-behavior: smooth;
+}
+
+.carousel-buttons button {
+  flex: 0 0 auto;
+  margin: 0 8px;
+  padding: 5px 20px;
+  background-color: #22466d;
+  color: #fff;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-buttons button:hover {
+  background: linear-gradient(to right, #0a3aca, #6d91fb);
 }
 
 .button-container {
@@ -543,15 +645,15 @@ button:hover {
 }
 
 .main-chat-header {
-  background-color: #0033cc;
+  background: #e5e5e5;
 }
 
 h6 {
-  color: rgba(187, 242, 255, 255);
+  color: black;
 }
 
 small {
-  color: rgba(187, 242, 255, 255);
+  color: black;
 }
 
 .card {
@@ -579,7 +681,7 @@ small {
   width: 8px;
   height: 8px;
   margin: 0 2px;
-  background-color: #ccc;
+  background-color: black;
   border-radius: 50%;
   opacity: 0;
   animation: typing 1.5s infinite;
@@ -608,12 +710,20 @@ small {
 }
 
 .main-chat-body .media.flex-row-reverse .main-msg-wrapper {
-  background-color: #007fff;
-  color: #fff;
+  /* background: linear-gradient(to right, #0a3aca, #6d91fb); */
+  background: #cecfeb;
+  color: black;
+  border-radius: 10px;
 }
 
 .main-msg-wrapper {
-  background-color: rgba(239, 242, 247, 255);
-  color: rgba(39, 45, 59, 255);
+  /* background-color: rgba(239, 242, 247, 255); */
+  background: #cecfeb;
+  color: black;
+  border-radius: 10px;
+}
+
+.media {
+  color: black;
 }
 </style>

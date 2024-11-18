@@ -63,22 +63,118 @@ Step 5: Choose vehicle, period, and zone
 Step 6: Confirm and enter Mpesa PIN .
 
 
-Acces Water System:
+Access Land rates:
 
-Press 1 For App users
+Step 1: After Logging in select land rates module
 
-Press 2 For USSD users 
+Step 2: Top right select "pay for land service"
 
-For App users
+Step 3: Choose any service you want to pay for land 
 
-Step 1: Log in 
+Step 4: Fill in all the necessary information and click next 
 
-Step 2: Select Access water Module
+Step 5: Upload all the necessary documnts and click finish 
 
-Step 3: Click Add Vehicle
+Step 6: For Land transfer Please select Land Usage and proceed to payment 
 
-For USSD users:
+Step 7: For Land clearance Please select clearance certificate fee and proceed to payment 
 
-Step 1: Dial *282#
+Step 8: For Land sub division fee Please select Sub-division fees and proceed to payment .
 
-Step 2: Select 1: My Services .
+
+Access Business permits:
+
+Step 1: After Logging in select Business permits module .
+
+
+Access Construction permits:
+
+Step 1: After Logging in select Construction permits module .
+
+
+Access PSV:
+
+Step 1: After Logging in select PSV Levy module
+
+Step 2: Click add vehicle 
+
+Step 3: Enter your number plate and click the blue box button to add your number plate 
+
+Step 4: Insert another number plate and click the submit button 
+
+Step 5: Click on the green button to make payment 
+
+Step 6: After payment click on the blue button to dowload your sticker and click on the red button to delete your vehicle .
+
+
+Access House rent:
+
+Step 1: After Logging in select House Rent module 
+
+Step 2: View a list of all registered houses under your details 
+
+Step 3: Click the purple icon on the right to view your house rent statement 
+
+Step 4: Click the green button writen pay to make online payment 
+
+Step 5: Enter the phone number you wish to make payments from and click send payment request.You will receive an mpesa STK push to insert your pin number and complete the transaction 
+
+Step 6: Upon successful payment, you will be redirected back to your registered houses 
+
+Step 7: Click on my receipt to view a copy of your receipt or to download your receipt .
+        
+
+Access Cess:
+
+Step 1: After Logging in select Cess module 
+
+Step 2: Click on New Application 
+
+Step 3: Fill in the details 
+
+Step 4: Click on the check box 
+
+Step 5: Click on the submit button 
+
+Step 6: Click on pay and proceed to payment .
+
+
+Access Markets:
+
+Step 1: After Logging in select Markets module
+
+Step 2: Click on the purple icon to view the statement 
+
+Step 3: Click the green icon written pay to pay for your stall 
+
+Step 4: Proceed to payment .
+
+
+Access Hawkers:
+
+Step 1: After Logging in select Hawking module 
+
+Step 2: Click the search button to filter hawkers report 
+
+Step 3: Click the purple or green button to download hawkers collection report 
+
+Step 4: Go through step 2 and step 3 to access hawkers zonal report .
+
+
+Pay Way leaves:
+
+Step 1: After Logging in select Wayleaves module 
+
+Step 2: Click the blue eye icon button to view the application details 
+
+Step 3: Click the "Download structure file" to download the application 
+
+Step 4: Click the button in red to "reject" or the button in blue to "approve" the application 
+
+Step 5: In Receipt page you can click the filter button to use any preferences 
+
+Step 6: Click the purple and green button to export as pdf or excel 
+
+Step 8: Click on the blue eye icon to view or download the receipt 
+
+Step 9: Follow the same from step 5 to step 8 for bills and licenses .
