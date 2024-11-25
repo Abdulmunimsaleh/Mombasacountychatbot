@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import random
 import string
@@ -96,7 +96,7 @@ def response(user_response, sent_tokens, TfidfVec, threshold=0.2):
     return formatted_response
 
 # Flask app initialization
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./txt-base64-chat-page/dist/assets', template_folder='./txt-base64-chat-page/dist')
 CORS(app)  
 
 # Load corpus
@@ -261,7 +261,10 @@ def chat():
         "further_help": further_help_message
     })
 
-
+# entry point to app
+@app.route('/')
+def home_page():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
